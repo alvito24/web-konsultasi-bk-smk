@@ -66,14 +66,28 @@
             <h3 class="font-bold text-gray-800 mb-6 flex items-center">
                 Status Booking Konseling Hari Ini
             </h3>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-
-        <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h3 class="font-bold text-gray-800 mb-4">Tren Konseling Tahun Ini</h3>
-            <div class="h-64">
-                <canvas id="counselingChart"></canvas>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 flex flex-col items-center justify-center text-center">
+                <div class="text-blue-600 font-bold text-2xl mb-1">{{ $data['booking_on_progress'] }}</div>
+                <div class="text-xs text-blue-600 uppercase tracking-wide font-semibold">Sedang Berjalan</div>
+            </div>
+            <div class="p-4 rounded-xl bg-green-50 border border-green-100 flex flex-col items-center justify-center text-center">
+                <div class="text-green-600 font-bold text-2xl mb-1">{{ $data['booking_selesai'] }}</div>
+                <div class="text-xs text-green-600 uppercase tracking-wide font-semibold">Selesai</div>
+            </div>
+            <div class="p-4 rounded-xl bg-yellow-50 border border-yellow-100 flex flex-col items-center justify-center text-center">
+                <div class="text-yellow-600 font-bold text-2xl mb-1">{{ $data['booking_pending'] }}</div>
+                <div class="text-xs text-yellow-600 uppercase tracking-wide font-semibold">Pending</div>
             </div>
         </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <h3 class="font-bold text-gray-800 mb-4">Tren Konseling Tahun Ini</h3>
+        <div class="h-64">
+            <canvas id="counselingChart"></canvas>
+        </div>
+    </div>
 
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <h3 class="font-bold text-gray-800 mb-4 flex items-center">
@@ -113,7 +127,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('counselingChart');
-        const chartData = @json($chartData); // Data dari Controller
+        const chartData = <?php echo json_encode($chartData); ?>; // Data dari Controller
 
         new Chart(ctx, {
             type: 'bar',
@@ -134,21 +148,7 @@
             }
         });
     </script>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 flex flex-col items-center justify-center text-center">
-                    <div class="text-blue-600 font-bold text-2xl mb-1">{{ $data['booking_on_progress'] }}</div>
-                    <div class="text-xs text-blue-600 uppercase tracking-wide font-semibold">Sedang Berjalan</div>
-                </div>
-                <div class="p-4 rounded-xl bg-green-50 border border-green-100 flex flex-col items-center justify-center text-center">
-                    <div class="text-green-600 font-bold text-2xl mb-1">{{ $data['booking_selesai'] }}</div>
-                    <div class="text-xs text-green-600 uppercase tracking-wide font-semibold">Selesai</div>
-                </div>
-                <div class="p-4 rounded-xl bg-yellow-50 border border-yellow-100 flex flex-col items-center justify-center text-center">
-                    <div class="text-yellow-600 font-bold text-2xl mb-1">{{ $data['booking_pending'] }}</div>
-                    <div class="text-xs text-yellow-600 uppercase tracking-wide font-semibold">Pending</div>
-                </div>
-            </div>
-        </div>
+
 
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <h3 class="font-bold text-gray-800 mb-4">Akses Cepat</h3>
